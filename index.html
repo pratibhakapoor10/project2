@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Text Summarizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: #ff6b6b;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff4757;
+    }
+    .output {
+      margin-top: 20px;
+      background: #222;
+      padding: 15px;
+      border-radius: 10px;
+      min-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI Text Summarizer</h1>
+    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+    <br>
+    <button onclick="summarizeText()">Summarize</button>
+    <div class="output" id="outputText">Your summary will appear here...</div>
+  </div>
+
+  <script>
+    function summarizeText() {
+      let text = document.getElementById("inputText").value;
+      if (!text.trim()) {
+        document.getElementById("outputText").innerText = "Please enter some text!";
+        return;
+      }
+      let sentences = text.split(/[.!?]/).filter(s => s.trim().length > 0);
+      let summary = "";
+
+      if (sentences.length > 2) {
+        summary = sentences[0] + ". " + sentences[Math.floor(sentences.length / 2)] + ". " + sentences[sentences.length - 1] + ".";
+      } else {
+        summary = text;
+      }
+
+      document.getElementById("outputText").innerText = summary;
+    }
+  </script>
+</body>
+</html>
